@@ -137,6 +137,24 @@ $(function () {
                     ctx.stroke();
 
                     break;
+
+                case 'ammeter' :
+
+                    var s = -PI2 / 3;
+                    var e = -PI2 / 6;
+                    var p = (nv - opt.min) / (opt.max - opt.min);
+                    var a = s - p * (s - e);
+
+                    ctx.beginPath();
+                    ctx.strokeStyle = opt.bgColor;
+                    ctx.arc(r, 1.5 * r, 1.5 * r - lw / 2, s, e, false);
+                    ctx.stroke();
+
+                    ctx.beginPath();
+                    ctx.strokeStyle = opt.fgColor;
+                    ctx.arc(r, 1.5 * r, 1.5 * r - lw / 2, s, a, false);
+                    ctx.stroke();
+
             }
         };
 
