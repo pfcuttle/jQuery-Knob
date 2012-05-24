@@ -23,6 +23,10 @@ $(function () {
             ,mx ,my ,x ,y
             ,self = this;
 
+        var ammeterGrad = ctx.createLinearGradient(0, 0, opt.width, 0);
+        ammeterGrad.addColorStop(0, '#e52000');
+        ammeterGrad.addColorStop(1, '#009200');
+
         this.onChange = function () {};
         this.onCancel = function () {};
         this.onRelease = function () {};
@@ -151,7 +155,7 @@ $(function () {
                     ctx.stroke();
 
                     ctx.beginPath();
-                    ctx.strokeStyle = opt.fgColor;
+                    ctx.strokeStyle = ammeterGrad;
                     ctx.arc(r, 1.5 * r, 1.5 * r - lw / 2, s, a, false);
                     ctx.stroke();
 
@@ -287,7 +291,11 @@ $(function () {
                     ,gopt
                 );
 
-                var c = $('<canvas width="' + opt.width + '" height="' + opt.width + '"></canvas>')
+                var height = opt.width;
+                if (opt.skin == 'ammeter')
+                    height *= 5 / 8;
+
+                var c = $('<canvas width="' + opt.width + '" height="' + height + '"></canvas>')
                     ,wd = $('<div style=width:' + opt.width + 'px;display:inline;"></div>')
                     ,k
                     ,vl = $this.val()
