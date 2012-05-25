@@ -75,6 +75,15 @@ $(function () {
             // Hook draw
             if (opt.draw(a, v, opt, ctx)) { return; }
 
+            if (opt.skin === 'ammeter') {
+                ctx.save();
+                ctx.font = '8pt arial bold';
+                ctx.fillStyle = opt.fgColor;
+                ctx.fillText(opt.min,  4 / 50 * opt.width, 3 / 50 * opt.width);
+                ctx.fillText(opt.max, 43 / 50 * opt.width, 3 / 50 * opt.width);
+                ctx.restore();
+            }
+
             for (tick = 0; tick < opt.ticks; tick++) {
 
                 ctx.beginPath();
